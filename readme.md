@@ -28,11 +28,19 @@ you can create a new data or edit or delete the data.
 
 here are some scren shots of the project.
 
-![Screenshot 1](image_url_1)
-Caption for Screenshot 1
+![Screenshot 1](https://github.com/bilalabdelkadir/excel-processer-client/blob/main/src/assets/D.png)
+Home Page where you can upload you excel file and there will be front end and back end validation.
 
-![Screenshot 2](image_url_2)
-Caption for Screenshot 2
+![Screenshot 2](https://github.com/bilalabdelkadir/excel-processer-client/blob/main/src/assets/error%20message.png)
+if there is an error in the excel file you will get an error message.
 
+![Screenshot 3](https://github.com/bilalabdelkadir/excel-processer-client/blob/main/src/assets/product%20display.png)
+after successfull upload you will get the data in the table.
+
+![Screenshot 4](https://github.com/bilalabdelkadir/excel-processer-client/blob/main/src/assets/onupdate.png)
+you can edit the data and save it. and also you can delete the data.
+
+![Screenshot 5](https://github.com/bilalabdelkadir/excel-processer-client/blob/main/src/assets/prisma.png)
+this is the database that we built using prisma and postgresql. it can be switched to any database.
 
 
