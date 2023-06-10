@@ -41,7 +41,7 @@ const Product = ({ product }: any) => {
   };
 
   return (
-    <div className="w-[90%] py-4 px-2 bg-slate-700 text-gray-300 flex justify-between my-2 gap-2 shadow-sm rounded-lg shadow-green-100 mx-auto cursor-pointer">
+    <div className="w-[90%] py-4 px-2 bg-slate-700 text-gray-300 flex justify-between my-2 gap-2 shadow-sm rounded-lg shadow-green-100 mx-auto">
       <div className="w-[20%] border-r-2 pr-2 flex justify-center items-center">
         {editing ? (
           <input
@@ -49,7 +49,7 @@ const Product = ({ product }: any) => {
             name="description"
             value={editedProduct.description}
             onChange={handleInputChange}
-            className="w-full bg-transparent text-gray-300 focus:outline-none"
+            className="w-full bg-white text-gray-700 rounded p-2 focus:outline-none"
           />
         ) : (
           <p>{editedProduct.description}</p>
@@ -62,7 +62,7 @@ const Product = ({ product }: any) => {
             name="unit"
             value={editedProduct.unit}
             onChange={handleInputChange}
-            className="w-full bg-transparent text-gray-300 focus:outline-none"
+            className="w-full bg-white text-gray-700 rounded p-2 focus:outline-none"
           />
         ) : (
           <p>{editedProduct.unit || "-"}</p>
@@ -75,7 +75,7 @@ const Product = ({ product }: any) => {
             name="qty"
             value={editedProduct.qty}
             onChange={handleInputChange}
-            className="w-full bg-transparent text-gray-300 focus:outline-none"
+            className="w-full bg-white text-gray-700 rounded p-2 focus:outline-none"
           />
         ) : (
           <p>{editedProduct.qty || "-"}</p>
@@ -88,7 +88,7 @@ const Product = ({ product }: any) => {
             name="rate"
             value={editedProduct.rate}
             onChange={handleInputChange}
-            className="w-full bg-transparent text-gray-300 focus:outline-none"
+            className="w-full bg-white text-gray-700 rounded p-2 focus:outline-none"
           />
         ) : (
           <p>{editedProduct.rate || "-"}</p>
@@ -101,7 +101,7 @@ const Product = ({ product }: any) => {
             name="amount"
             value={editedProduct.amount}
             onChange={handleInputChange}
-            className="w-full bg-transparent text-gray-300 focus:outline-none"
+            className="w-full bg-white text-gray-700 rounded p-2 focus:outline-none"
           />
         ) : (
           <p>{editedProduct.amount || "-"}</p>
