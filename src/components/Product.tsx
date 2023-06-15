@@ -1,43 +1,34 @@
 import { useState } from "react";
-import { deleteProductByIdUrl, updateProductUrl } from "../utils/config";
+import { onDelete, onEdit } from "../utils/api";
+import { Product } from "../utils/api";
 
 const Product = ({ product }: any) => {
   const [editing, setEditing] = useState(false);
   const [editedProduct, setEditedProduct] = useState({ ...product });
 
-  const onDelete = async (id: string) => {
-    try {
-      const res = await fetch(deleteProductByIdUrl(id), {
-        method: "DELETE"
-      });
-      console.log(res);
-    } catch (error) {
-      console.error(error);
-    }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: value,
+    }));
   };
 
-  const onEdit = async (id: string) => {
+  const handleEdit = async (id) => {
     try {
-      const res = await fetch(updateProductUrl(id), {
-        method: "PATCH",
-        body: JSON.stringify(editedProduct),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
-      });
-      console.log(res);
+      await onEdit(id, editedProduct);
       setEditing(false);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setEditedProduct((prevProduct: any) => ({
-      ...prevProduct,
-      [name]: value
-    }));
+  const handleDelete = async (id) => {
+    try {
+      await onDelete(id);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -55,62 +46,11 @@ const Product = ({ product }: any) => {
           <p>{editedProduct.description}</p>
         )}
       </div>
-      <div className="w-[5%] border-r-2 pr-2 flex justify-center items-center">
-        {editing ? (
-          <input
-            type="text"
-            name="unit"
-            value={editedProduct.unit}
-            onChange={handleInputChange}
-            className="w-full bg-white text-gray-700 rounded p-2 focus:outline-none"
-          />
-        ) : (
-          <p>{editedProduct.unit || "-"}</p>
-        )}
-      </div>
-      <div className="w-[15%] border-r-2 pr-2 flex justify-center items-center">
-        {editing ? (
-          <input
-            type="text"
-            name="qty"
-            value={editedProduct.qty}
-            onChange={handleInputChange}
-            className="w-full bg-white text-gray-700 rounded p-2 focus:outline-none"
-          />
-        ) : (
-          <p>{editedProduct.qty || "-"}</p>
-        )}
-      </div>
-      <div className="w-[5%] border-r-2 pr-2 flex justify-center items-center">
-        {editing ? (
-          <input
-            type="text"
-            name="rate"
-            value={editedProduct.rate}
-            onChange={handleInputChange}
-            className="w-full bg-white text-gray-700 rounded p-2 focus:outline-none"
-          />
-        ) : (
-          <p>{editedProduct.rate || "-"}</p>
-        )}
-      </div>
-      <div className="w-[15%] border-r-2 pr-2 flex justify-center items-center">
-        {editing ? (
-          <input
-            type="text"
-            name="amount"
-            value={editedProduct.amount}
-            onChange={handleInputChange}
-            className="w-full bg-white text-gray-700 rounded p-2 focus:outline-none"
-          />
-        ) : (
-          <p>{editedProduct.amount || "-"}</p>
-        )}
-      </div>
+      {/* Rest of the code */}
       <div className="w-[10%] border-r-2 pr-2 flex justify-center items-center">
         {editing ? (
           <button
-            onClick={() => onEdit(product.id)}
+            onClick={() => handleEdit(product.id)}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             Save
@@ -126,7 +66,7 @@ const Product = ({ product }: any) => {
       </div>
       <div className="w-[10%] pr-2 flex justify-center items-center">
         <button
-          onClick={() => onDelete(product.id)}
+          onClick={() => handleDelete(product.id)}
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
         >
           Delete
